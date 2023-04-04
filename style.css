@@ -1,0 +1,23 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+#gameboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+.cell {
+  background: black;
+  border: 1px solid white;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  font-size: 64px;
+}
