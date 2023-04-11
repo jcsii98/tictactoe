@@ -71,6 +71,7 @@ function handleMove(row, col) {
     gameHistory.push(JSON.parse(JSON.stringify(gameBoard)));
   }
 }
+
 function xTurn() {
   document.getElementById("xturn").classList.remove("opacity-0");
   document.getElementById("oturn").classList.add("opacity-0");
@@ -79,6 +80,7 @@ function oTurn() {
   document.getElementById("oturn").classList.remove("opacity-0");
   document.getElementById("xturn").classList.add("opacity-0");
 }
+
 const cells = document.querySelectorAll(".cell");
 const startBtn = document.getElementById("start");
 const resetBtn = document.getElementById("reset");
@@ -142,11 +144,13 @@ function replayBtnShow() {
   replayBtn.style.display = "block";
 }
 function showControls() {
-  const firstState = gameHistory[0];
-  currentMoveIndex = 0;
+  // reset board to first move
+  const firstState = gameHistory[1];
+  currentMoveIndex = 1;
   updateBoard(firstState);
+  // show controls
   replayBtn.style.display = "none";
-  prevBtn.style.display = "none";
+  prevBtn.style.display = "block";
   nextBtn.style.display = "block";
 }
 
