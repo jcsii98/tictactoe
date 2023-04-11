@@ -55,7 +55,7 @@ function handleMove(row, col) {
     cells[row * 3 + col].textContent = currentPlayer;
     console.log(gameBoard);
     if (checkWin()) {
-      showReplayBtn();
+      replayBtnShow();
       console.log(currentPlayer + " wins!");
       cells.forEach((cell) => {
         cell.removeEventListener("click", handleMoveListener);
@@ -68,7 +68,7 @@ function handleMove(row, col) {
     } else {
       oTurn();
     }
-    gameHistory.push(JSON.parse(JSON.stringify(gameBoard))); // store a copy of the current game board in gameHistory
+    gameHistory.push(JSON.parse(JSON.stringify(gameBoard)));
   }
 }
 function xTurn() {
@@ -117,11 +117,13 @@ function resetGame() {
       move: null,
     },
   ];
+  replayHideAll();
   currentPlayer = "X";
   cells.forEach((cell) => {
     cell.textContent = "";
     currentHistoryIndex = 0;
   });
+  startGame();
 }
 
 // game replay
@@ -131,13 +133,20 @@ replayBtn.addEventListener("click", showControls);
 nextBtn.addEventListener("click", nextMove);
 const prevBtn = document.getElementById("prev-button");
 prevBtn.addEventListener("click", previousMove);
-
-function showReplayBtn() {
+function replayHideAll() {
+  replayBtn.style.display = "none";
+  prevBtn.style.display = "none";
+  nextBtn.style.display = "none";
+}
+function replayBtnShow() {
   replayBtn.style.display = "block";
 }
 function showControls() {
+  const firstState = gameHistory[0];
+  currentMoveIndex = 0;
+  updateBoard(firstState);
   replayBtn.style.display = "none";
-  prevBtn.style.display = "block";
+  prevBtn.style.display = "none";
   nextBtn.style.display = "block";
 }
 
@@ -147,6 +156,10 @@ function nextMove() {
   if (currentMoveIndex < gameHistory.length - 1) {
     currentMoveIndex++;
     updateBoard(gameHistory[currentMoveIndex]);
+    prevBtn.disabled = false; // enable previous button
+  }
+  if (currentMoveIndex >= gameHistory.length - 1) {
+    nextBtn.disabled = true; // disable next button
   }
 }
 
@@ -154,6 +167,10 @@ function previousMove() {
   if (currentMoveIndex > 0) {
     currentMoveIndex--;
     updateBoard(gameHistory[currentMoveIndex]);
+    nextBtn.disabled = false; // enable next button
+  }
+  if (currentMoveIndex <= 1) {
+    prevBtn.disabled = true; // disable previous button
   }
 }
 
