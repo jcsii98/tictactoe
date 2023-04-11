@@ -57,6 +57,14 @@ body {
   opacity: 0;
 }
 
-.pre-game {
-  pointer-events: none;
+#prev-button {
+  display: none;
+}
+
+#next-button {
+  display: none;
+}
+
+#replay-button {
+  display: none;
 }

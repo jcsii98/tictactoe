@@ -55,6 +55,7 @@ function handleMove(row, col) {
     cells[row * 3 + col].textContent = currentPlayer;
     console.log(gameBoard);
     if (checkWin()) {
+      showReplayBtn();
       console.log(currentPlayer + " wins!");
       cells.forEach((cell) => {
         cell.removeEventListener("click", handleMoveListener);
@@ -122,29 +123,48 @@ function resetGame() {
     currentHistoryIndex = 0;
   });
 }
+
+// game replay
+const replayBtn = document.getElementById("replay-button");
 const nextBtn = document.getElementById("next-button");
+replayBtn.addEventListener("click", showControls);
 nextBtn.addEventListener("click", nextMove);
 const prevBtn = document.getElementById("prev-button");
 prevBtn.addEventListener("click", previousMove);
 
-let currentMoveIndex = gameHistory.length - 1; // set to last move index (winning move)
-updateBoard();
-
-function previousMove() {
-  if (currentMoveIndex > 0) {
-    currentMoveIndex--;
-    updateBoard();
-  }
+function showReplayBtn() {
+  replayBtn.style.display = "block";
 }
+function showControls() {
+  replayBtn.style.display = "none";
+  prevBtn.style.display = "block";
+  nextBtn.style.display = "block";
+}
+
+let currentMoveIndex = gameHistory.length - 1;
 
 function nextMove() {
   if (currentMoveIndex < gameHistory.length - 1) {
     currentMoveIndex++;
-    updateBoard();
+    updateBoard(gameHistory[currentMoveIndex]);
+  }
+}
+
+function previousMove() {
+  if (currentMoveIndex > 0) {
+    currentMoveIndex--;
+    updateBoard(gameHistory[currentMoveIndex]);
   }
 }
 
 function updateBoard() {
-  const gameState = gameHistory[currentMoveIndex];
-  displayBoard(gameState);
+  gameBoard = gameHistory[currentMoveIndex];
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      const cell = cells[i * 3 + j];
+      if (cell) {
+        cell.textContent = gameBoard[i][j];
+      }
+    }
+  }
 }
