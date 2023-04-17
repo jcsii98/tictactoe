@@ -6,32 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="main-container">
-      <div class="button-container" id="header">
-        <button id="start">start</button>
-        <button id="reset">reset</button>
-      </div>
       <div class="game-container">
-        <div class="turn-announcer opacity-0" id="xturn">X's turn</div>
-        <div id="gameboard">
-          <div class="cell" id="cell-1"></div>
-          <div class="cell" id="cell-2"></div>
-          <div class="cell" id="cell-3"></div>
-          <div class="cell" id="cell-4"></div>
-          <div class="cell" id="cell-5"></div>
-          <div class="cell" id="cell-6"></div>
-          <div class="cell" id="cell-7"></div>
-          <div class="cell" id="cell-8"></div>
-          <div class="cell" id="cell-9 "></div>
+        <div class="button-container" id="header">
+          <button id="start">Start</button>
+          <button id="reset">Reset</button>
         </div>
-        <div class="turn-announcer opacity-0" id="oturn">O's turn</div>
-      </div>
-      <div class="button-container" id="postgame">
-        <button id="replay-button">Replay</button>
-        <button id="prev-button">Prev</button>
-        <button id="next-button">Next</button>
+        <div class="turn-announcer opacity-0" id="xturn">X TURN</div>
+        <div id="gameboard">
+          <div class="cell top-left" id="cell-1"></div>
+          <div class="cell top" id="cell-2"></div>
+          <div class="cell top-right" id="cell-3"></div>
+          <div class="cell left" id="cell-4"></div>
+          <div class="cell center" id="cell-5"></div>
+          <div class="cell right" id="cell-6"></div>
+          <div class="cell bottom-left" id="cell-7"></div>
+          <div class="cell bottom" id="cell-8"></div>
+          <div class="cell bottom-right" id="cell-9 "></div>
+        </div>
+        <div class="turn-announcer opacity-0" id="oturn">O TURN</div>
+        <div class="backdrop"></div>
+        <div class="modal">
+          <h1 class="modal-h1"></h1>
+          <button id="replay-button">Replay</button>
+        </div>
+        <div class="button-container" id="postgame">
+          <button id="prev-button">PREV</button>
+          <button id="next-button">NEXT</button>
+        </div>
       </div>
     </div>
 
